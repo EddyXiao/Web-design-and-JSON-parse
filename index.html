@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<style type="text/css">
+</style>
+</head>
+
+<body>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>	
+	        $.ajax({url: "apartment.json",
+                dataType: "json",
+                type: "get",
+                cache: false,
+                success: function(data) {
+					var tr;
+                    $(data.apartments).each(function(index, value){
+                        tr = $('<tr/>');
+            tr.append("<td width='49%'><img src='" + value.image + "' width='303' height='155' alt=''/></td>");
+            
+			tr.append("<td width='51%' valign='top'>");
+            tr.append("<table width='100%' border='1'>");
+            tr.append("<tr><td><p style='color: #080808; text-decoration: underline; font-size: large; font-style: normal;'><strong>"+value.name+"</strong></p>");
+			tr.append("<p style='color: #BDBDBD; font-size: small;'>"+ value.description+"</p></td></tr>");
+            tr.append("<tr><td valign='bottom'><p style='color: #F7B010; font-size: 24px;'><span style='font-size: 12px'>From</span>$"+ value.price + "<br>");
+			tr.append("<span style='font-size: 12px'>USD / Month</span></p></td</tr></table></td>");            
+			$('#main').append(tr);                    
+        //var json = $.parseJSON(data);
+        //now json variable contains data in json format
+        //let's display a few items
+        //$('#results').html('Plugin name: ' + json.name + '<br />Author: ' + json.author.name);
+                });
+                }});
+</script>
+<table id="main">
+    <tr bgcolor="#EFEFEF">
+      <td width="911">Minneapolis, MN: 4 Apartments</td>
+    </tr>
+    <tr bgcolor="#EFEFEF">
+      <td height="25" style="text-align: right"><input name="Popularity" type="button" id="Popularity" title="Popularity" value="Popularity">
+      <input type="button" name="button2" id="button2" value="Price">
+      <span style="text-align: center"></span></td>
+    </tr>
+</table>
+</body>
+</html>
